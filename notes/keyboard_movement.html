@@ -1,0 +1,102 @@
+<!-- look for -->
+<!-- ************************************************************************************************************************ -->
+<!-- ************************************************************************************************************************ -->
+
+
+
+<html>
+
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<script>
+    let canvas;
+    let canvasContext;
+
+    let player_x;
+    let player_y;  //should be const, but since I am assignming it later I can't, right?
+
+    window.onload = function () {
+        canvas = document.getElementById('gameCanvas');
+        canvasContext = canvas.getContext('2d');
+
+        player_x = canvas.width / 2;
+        player_y = canvas.height - 100;
+        player_move_distance = 20;
+
+        let framesPerSecond = 30;
+        setInterval(function () {
+            moveEverything();
+            drawEverything();
+        }, 1000 / framesPerSecond);
+
+
+    }
+
+
+    //########################################################################################
+    // handling User Movement:
+    // Method 1:
+    // Pros: works!
+    // Cons: very choppy.  It may be moving every time the even is sent through the hardware
+
+    // document.addEventListener('keydown', function (event) {
+    //     if (event.keyCode == 37) {
+    //         player_x -= player_move_distance  //moves player to the left
+    //     }
+    //     else if (event.keyCode == 39) {
+    //         player_x += player_move_distance  //moves player to the right
+    //     }
+    // });
+
+
+    // ############################################################################################################
+    // Method2:
+    // use Bool variable that is switched on and off as user presses button, and speed is added in moveEverything()
+    //Pro: Smoother than method 1
+    document.addEventListener('keydown', function (event) {
+        // there is a key pressed!
+        if (event.keyCode == 37) {
+            left_arrow_key_is_pressed = true;
+            console.log("addEventListener: left key is pressed");
+        }
+        else if (event.keyCode == 39) {
+            // player_x += player_move_distance  //moves player to the right
+            right_arrow_key_is_pressed = true;
+            console.log("addEventListener: right key is pressed");
+
+        }
+    });
+    // ######################################################################################################################
+
+
+    function handleUserMovements() {
+
+    }
+
+    function moveEverything() {
+
+    }
+
+    function drawEverything() {
+        // next line blanks out the screen with black
+        colorRect(0, 0, canvas.width, canvas.height, 'black');
+
+        // draw player
+        colorCircle(player_x, player_y, 46, 'blue');
+
+
+        function colorCircle(centerX, centerY, radius, drawColor) {
+            canvasContext.fillStyle = drawColor;
+            canvasContext.beginPath();
+            canvasContext.arc(centerX, centerY, radius, 0, Math.PI * 2, true);
+            canvasContext.fill();
+        }
+
+        function colorRect(leftX, topY, width, height, drawColor) {
+            canvasContext.fillStyle = drawColor;
+            canvasContext.fillRect(leftX, topY, width, height);
+        }
+    }
+</script>
+
+</html>
