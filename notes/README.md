@@ -1,0 +1,1 @@
+This notes folder is intended to contain notes for myself (and maybe others) to use to learn how to make browser games.
