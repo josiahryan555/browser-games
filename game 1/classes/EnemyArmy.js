@@ -12,7 +12,7 @@ class EnemyArmy {
         let space_ship_y = starting_y;
 
         for (let i = 0; i < this.army_size; i++) {
-            let enemy_ship = new SpaceShip(space_ship_x, space_ship_y, move_distance, circle_radius, color);
+            let enemy_ship = new EnemyShip(space_ship_x, space_ship_y, move_distance, circle_radius, color);
             this.army_array.push(enemy_ship);
             space_ship_x += enemy_spacing;
         }
@@ -20,7 +20,19 @@ class EnemyArmy {
 
     renderArmy(canvas, canvasContext) {
         this.army_array.forEach(function (enemy, index) {
-            enemy.renderSelf(canvas, canvasContext);
+            if (enemy.alive) {
+                enemy.renderSelf(canvas, canvasContext);
+            }
         });
+    }
+
+    collisionCheck(bullet_array) {
+        // console.log("collisionCheck() in EnemyArmy.js");
+        this.army_array.forEach(function (enemy, index) {
+            let collision = enemy.collisionCheck(bullet_array);
+            if (collision) {
+                enemy.destroyed();
+            }
+        })
     }
 }

@@ -16,7 +16,7 @@ class Rectangle {
 const square = new Rectangle(10, 10);
 
 
-let User = new SpaceShip(500, 500, 10, 45, 'green');
+let User = new PlayerShip(500, 500, 10, 45, 'green');
 let EnemySwarm = new EnemyArmy(10, 50, 50, 10, 'red', 70);
 // starting_x, starting_y, circle_radius, color, troop_spacing
 
@@ -76,6 +76,7 @@ document.addEventListener('keyup', function (event) {
 
 function moveEverything() {
     EnemySwarm.collisionCheck(User.bullet_array);
+    User.collisionCheck(EnemySwarm.army_array);
 
     if (left_arrow_key_is_pressed) {
         // player_x -= player_move_distance;

@@ -5,10 +5,11 @@ class SpaceShip {
         this.move_distance = move_distance;
         this.circle_radius = circle_radius;
         this.color = color;
-        this.num_bullets = 3; //player can not have more than three bullets in play at one time
+        this.num_bullets = 30; //player can not have more than three bullets in play at one time
         this.bullet_array = [];
         this.width = 20;
         this.height = 30;
+        this.alive = true;
     }
 
     moveLeft() {
@@ -18,19 +19,8 @@ class SpaceShip {
         this.x += this.move_distance;
     }
 
-    // shoots PlayerBullet
-    shoot() {
-        if (this.bullet_array.length < 3) {
-            // shoot
-            let bullet = new PlayerBullet(this.x, this.y, 20, 'white');
-            console.log("bullet was created in Player.js");
-            this.bullet_array.push(bullet);
-        }
-    }
-
     //removes the oldest bullet if one of the bul
     removeBulletsCheck() {
-        console.log("bullet removed called");
         if (this.bullet_array[0].y < -30) {
             // shift() deletes the first element of an array
             // this is great because the oldest bullet will be the one that needs to be destroyed
@@ -56,7 +46,14 @@ class SpaceShip {
 
     renderSelf(canvas, canvasContext) {
         // colorRect(this.x, this.y, this.width, this.height, this.color, canvasContext);
-        colorCircle(this.x, this.y, this.circle_radius, this.color, canvasContext);
-
+        if (this.alive) {
+            colorCircle(this.x, this.y, this.circle_radius, this.color, canvasContext);
+        }
     }
+
+    destroyed() {
+        console.log("this spaceship is destroyed");
+        this.alive = false;
+    }
+
 }
