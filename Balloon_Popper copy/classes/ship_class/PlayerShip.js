@@ -13,13 +13,22 @@ class PlayerSpaceShip {
         this.width = 20;
         this.height = 30;
         this.alive = true;
+        this.hit_box = this.updateHitBox();
     }
 
-    moveLeft() {
-        this.x -= this.move_distance;
+    //returns new hitbox
+    updateHitBox() {
+        let updated_hit_box = {
+            top: this.y - this.circle_radius,
+            bottom: this.y + this.circle_radius,
+            left: this.x - this.circle_radius,
+            right: this.x + this.circle_radius
+        }
+        this.hit_box = updated_hit_box;
     }
-    moveRight() {
-        this.x += this.move_distance;
+
+    getHitBox() {
+        return this.hit_box;
     }
 
     //removes the oldest bullet if one of the bul
@@ -39,7 +48,6 @@ class PlayerSpaceShip {
             bullet.move();
 
             bullet.drawSelf(canvas, canvasContext);
-            // colorRect(bullet.x, bullet.y, bullet.x + 5, bullet.y + 20, 'white', canvasContext);
         });
         // if there are any bullets in the bullet array, call the remove bullets check function
         if (this.bullet_array.length > 0) {
@@ -60,23 +68,23 @@ class PlayerSpaceShip {
     }
 
     // function to check if user has been hit, and if so, handles that
-    collisionCheck(list_of_enemies) {
-        let collision = false;
+    // collisionCheck(list_of_enemies) {
+    //     let collision = false;
 
-        let ship_left = this.x - (.5 * this.width);
-        let ship_right = this.x + (.5 * this.width);
-        let ship_top = this.y - (.5 * this.height);
-        let ship_bottom = this.y + (.5 * this.height);
+    //     let ship_left = this.x - (.5 * this.width);
+    //     let ship_right = this.x + (.5 * this.width);
+    //     let ship_top = this.y - (.5 * this.height);
+    //     let ship_bottom = this.y + (.5 * this.height);
 
-        list_of_enemies.forEach(function (enemy, index) {
-            enemy.bullet_array.forEach(function (bullet, index) {
-                collision = bullet.collisionCheck(ship_left, ship_right, ship_top, ship_bottom);
-                if (collision) {
-                    this.destroyed();
-                }
-            });
-        });
-    }
+    //     list_of_enemies.forEach(function (enemy, index) {
+    //         enemy.bullet_array.forEach(function (bullet, index) {
+    //             collision = bullet.collisionCheck(ship_left, ship_right, ship_top, ship_bottom);
+    //             if (collision) {
+    //                 this.destroyed();
+    //             }
+    //         });
+    //     });
+    // }
 
     shoot() {
         if (this.bullet_array.length < this.num_bullets) {
@@ -99,11 +107,7 @@ class PlayerSpaceShip {
         //Spacebar = shoot bullet
         else if (event.keyCode == 32) {
             this.shoot();
-            console.log("bullet shot in game_functionality.js");
+            // console.log("bullet shot in game_functionality.js");
         }
-
     }
-
-
-
 }

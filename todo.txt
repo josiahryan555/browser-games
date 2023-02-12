@@ -1,4 +1,13 @@
 DONE 1: Copy code from notes/space ship class and put it in game 1
-2: post to github
+DONE 2: post to github
 
 3: make ballon game with levels of diff colored ballons
+ - Finsih ballon.js class. try out.
+ - adapt enemyArmy.js to be a ballon line or swarm or something, then make a level
+   class to have multiple ballon lines
+
+
+I need to make the bullet die after it hits
+
+
+make collision functions much more universal: take in a

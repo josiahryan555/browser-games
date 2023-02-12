@@ -5,7 +5,7 @@ let left_arrow_key_is_pressed = false;
 let right_arrow_key_is_pressed = false;
 
 let User = new XMovingPlayerShip(500, 500, 10, 45, 'green');
-let EnemySwarm = new EnemyArmy(10, 50, 50, 10, 'red', 70);
+let Level_1 = new Level(1, 3, 10);
 
 let player_score = 0;
 
@@ -32,11 +32,8 @@ document.addEventListener('keyup', function (event) {
 });
 
 function moveEverything() {
-    let points_earned = 0;
-    points_earned = EnemySwarm.collisionCheck(User.bullet_array);
-
+    Level_1.collisionCheck(User.bullet_array);
     User.move();
-    User.collisionCheck(EnemySwarm.army_array);
 
 }
 
@@ -49,10 +46,10 @@ function drawEverything() {
 
     User.renderSelf(canvas, canvasContext);
     User.renderBullets(canvas, canvasContext);
-    EnemySwarm.renderArmy(canvas, canvasContext);
+    Level_1.render(canvas, canvasContext);
 }
 
 function updateScore(new_points) {
     player_score += new_points;
-    console.log("Player Score: " + player_score);
+    // console.log("Player Score: " + player_score);
 }

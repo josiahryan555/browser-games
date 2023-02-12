@@ -7,6 +7,7 @@ class XMovingPlayerShip extends PlayerSpaceShip {
         this.move_distance = move_distance;
         this.moving_left = false; //when left arrow key is pressed
         this.moving_right = false; //when right arrow key is pressed
+        console.log(this.hit_box);
     }
 
     handle_keyup(name) {
@@ -35,12 +36,11 @@ class XMovingPlayerShip extends PlayerSpaceShip {
     //moves user 1 move_distance per frame
     move() {
         if (this.moving_left) {
-
             this.x -= this.move_distance;
         } else if (this.moving_right) {
-
             this.x += this.move_distance;
         }
         // if both right and left arrow keys are pressed down, the speed will even out to neutral
+        this.updateHitBox();
     }
 }
