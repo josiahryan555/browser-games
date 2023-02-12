@@ -1,12 +1,19 @@
 class EnemyShip extends SpaceShip {
     constructor(starting_x, starting_y, move_distance, circle_radius, color) {
         super(starting_x, starting_y, move_distance, circle_radius, color);
+        // this.point_value = 10;
+    }
+
+    get point_val() {
+        return this.point_value;
     }
 
     // function to check if enemy has been hit, and if so, handles that
     collisionCheck(bullet_array) {
         let collision = false;  // collision with any bullets
         let bullet_collision = false;  //collision with a specific bullet in the loop
+
+        let points_won = 0;
 
         let ship_left = this.x - (.5 * this.width);
         let ship_right = this.x + (.5 * this.width);
@@ -17,9 +24,12 @@ class EnemyShip extends SpaceShip {
             bullet_collision = bullet.collisionCheck(ship_left, ship_right, ship_top, ship_bottom);
             if (bullet_collision) {
                 collision = true;
+                // points_won = this.point_value;
+                points_won = 10;
             }
         });
-        return collision;
+        // return collision;
+        return points_won;
     }
 
     shoot() {

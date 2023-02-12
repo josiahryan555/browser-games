@@ -12,7 +12,7 @@ class EnemyArmy {
         let space_ship_y = starting_y;
 
         for (let i = 0; i < this.army_size; i++) {
-            let enemy_ship = new EnemySpaceShip(space_ship_x, space_ship_y, move_distance, circle_radius, color);
+            let enemy_ship = new EnemyShip(space_ship_x, space_ship_y, move_distance, circle_radius, color);
             this.army_array.push(enemy_ship);
             space_ship_x += enemy_spacing;
         }
