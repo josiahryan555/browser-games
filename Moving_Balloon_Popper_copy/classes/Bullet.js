@@ -8,12 +8,23 @@ class Bullet {
         this.height = 20;
         this.top_left_x = this.x - (.5 * this.width);
         this.top_left_y = this.y - (.5 * this.height);
+        this.destroyed = false; //if true, bullet has been destroyed
         this.hit_box = {
             top: this.y - this.height,
             bottom: this.y + this.height,
             left: this.x - this.width,
             right: this.x + this.width
         };
+    }
+
+    //destroys bullet
+    destroy() {
+        if (this.destroyed) {
+            //this.destroyed was already true, and destroy() should not have been called
+            console.log("bullet.destroy() was called on an already destroyed bullet");
+        }
+        this.destroyed = true;
+        console.log()
     }
 
     updateHitBox() {
@@ -39,7 +50,9 @@ class Bullet {
     }
 
     drawSelf(canvas, canvasContext) {
-        colorRect(this.top_left_x, this.top_left_y, this.width, this.height, this.color, canvasContext);
+        if (!this.destroyed) {
+            colorRect(this.top_left_x, this.top_left_y, this.width, this.height, this.color, canvasContext);
+        }
     }
 
 
@@ -57,7 +70,7 @@ class Bullet {
                 //check for collision
                 if (this.hit_box.top < target_bottom && this.hit_box.left < target_right && this.hit_box.right > target_left) {
                     //collision!
-                    console.log("collision!");
+                    // console.log("bullet collision!");
                     return true;
                 }
             }
@@ -70,7 +83,7 @@ class Bullet {
                 //check for collision
                 if (this.hit_box.bottom > target_top && this.hit_box.left < target_right && this.hit_box.right > target_left) {
                     //collision!
-                    console.log("collision!");
+                    // console.log("bullet collision!");
                     return true;
                 }
             }

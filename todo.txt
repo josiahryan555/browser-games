@@ -1,13 +1,12 @@
-DONE 1: Copy code from notes/space ship class and put it in game 1
-DONE 2: post to github
-
-3: make ballon game with levels of diff colored ballons
- - Finsih ballon.js class. try out.
- - adapt enemyArmy.js to be a ballon line or swarm or something, then make a level
-   class to have multiple ballon lines
+Ideas for the Moving_Balloon_Popper:
+- make balloons do damage to player
+  - currently broken.  It might be XMovingPlayerShip.js line 61 (that is where the thrown error is) but
+  it might be the 'this.destroyed()' line in a function, but taking it out didnt fix the problem
 
 
-I need to make the bullet die after it hits
 
 
-make collision functions much more universal: take in a
+- add more levels, constantly getting harder?
+- make it 3D
+- add scoreing
+- add lives

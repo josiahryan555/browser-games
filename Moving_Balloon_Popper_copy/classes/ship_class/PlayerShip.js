@@ -13,7 +13,12 @@ class PlayerSpaceShip {
         this.width = 20;
         this.height = 30;
         this.alive = true;
-        this.hit_box = this.updateHitBox();
+        this.hit_box = {
+            top: this.y - this.circle_radius,
+            bottom: this.y + this.circle_radius,
+            left: this.x - this.circle_radius,
+            right: this.x + this.circle_radius
+        };
     }
 
     //returns new hitbox
@@ -58,33 +63,16 @@ class PlayerSpaceShip {
     renderSelf(canvas, canvasContext) {
         // colorRect(this.x, this.y, this.width, this.height, this.color, canvasContext);
         if (this.alive) {
+            // console.log("rendering self becuase this.alive = " + this.alive);
             colorCircle(this.x, this.y, this.circle_radius, this.color, canvasContext);
         }
     }
 
-    destroyed() {
-        console.log("this spaceship is destroyed");
+    //called when playership is shot
+    hit() {
+        console.log("User SpaceShip is destroyed");
         this.alive = false;
     }
-
-    // function to check if user has been hit, and if so, handles that
-    // collisionCheck(list_of_enemies) {
-    //     let collision = false;
-
-    //     let ship_left = this.x - (.5 * this.width);
-    //     let ship_right = this.x + (.5 * this.width);
-    //     let ship_top = this.y - (.5 * this.height);
-    //     let ship_bottom = this.y + (.5 * this.height);
-
-    //     list_of_enemies.forEach(function (enemy, index) {
-    //         enemy.bullet_array.forEach(function (bullet, index) {
-    //             collision = bullet.collisionCheck(ship_left, ship_right, ship_top, ship_bottom);
-    //             if (collision) {
-    //                 this.destroyed();
-    //             }
-    //         });
-    //     });
-    // }
 
     shoot() {
         if (this.bullet_array.length < this.num_bullets) {
@@ -107,7 +95,7 @@ class PlayerSpaceShip {
         //Spacebar = shoot bullet
         else if (event.keyCode == 32) {
             this.shoot();
-            // console.log("bullet shot in game_functionality.js");
         }
+        // console.log("bullet shot in game_functionality.js");
     }
 }

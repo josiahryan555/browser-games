@@ -6,13 +6,24 @@ class Ballon {
         this.x = starting_x;
         this.y = starting_y;
         this.circle_radius = 30;
+        this.x_moving_speed = 0;
+        this.y_moving_speed = 1;
         this.hit_box = {
             top: this.y - this.circle_radius,
             bottom: this.y + this.circle_radius,
             left: this.x - this.circle_radius,
             right: this.x + this.circle_radius
         };
-        this.updateHitBox();
+        // this.updateHitBox();
+    }
+
+    //returns true if health > 0
+    alive() {
+        if (this.health > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     updateHitBox() {
@@ -36,29 +47,37 @@ class Ballon {
 
     //render
     renderSelf(canvas, canvasContext) {
+        // console.log("balloon.render");
+        // console.log("balloon health: " + this.health);
+        // console.log(this);
         if (this.health > 0) {
             let color = this.getColor();
             colorCircle(this.x, this.y, this.circle_radius, color, canvasContext);
         }
     }
 
-    //collision
-    // function to check if enemy has been hit, and if so, handles that
-    //TODO make bullet dissapear after it hits, do one damage
-    collisionCheck(bullet_array) {
+    //recieves a XMovingPlayerShip object
+    collisionCheck(User) {
         // console.log(this.hit_box);
         const baloon_hit_box = this.hit_box; //this line fixed problem when using this.hig_box in the bellow .for each funciton
 
+        let player_collision = false;
         let collision = false;  // collision with any bullets
         let bullet_collision = false;  //collision with a specific bullet in the loop
 
-        bullet_array.forEach(function (bullet, index, self) {
+        // an array of all bullets and the player's ship
+        // let collisionCheckArray = User.bullet_array.push()
+
+        User.bullet_array.forEach(function (bullet, index, self) {
             bullet_collision = bullet.collisionCheck(baloon_hit_box);
+            player_collision
 
             if (bullet_collision) {
                 collision = true;
-                bullet_array.splice(index, 1);
+                // bullet_array.splice(index, 1);
             }
+
+
         });
         // return collision;
         return collision;
@@ -78,5 +97,12 @@ class Ballon {
         } else {
             return "none";
         }
+    }
+
+    //moves ballon
+    move() {
+        this.y += this.y_moving_speed;
+        this.x += this.x_moving_speed;
+        this.updateHitBox();
     }
 }
