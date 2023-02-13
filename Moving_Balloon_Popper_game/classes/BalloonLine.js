@@ -20,7 +20,7 @@ class BalloonLine {
     }
 
     render(canvas, canvasContext) {
-        console.log("balloonLine.render");
+        // console.log("balloonLine.render");
         this.army_array.forEach(function (balloon, index) {
             balloon.renderSelf(canvas, canvasContext);
             // console.log("rendering balloon " + index);

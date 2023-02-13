@@ -1,8 +1,6 @@
-Ideas for the Moving_Balloon_Popper:
-- make balloons do damage to player
-  - currently broken.  It might be XMovingPlayerShip.js line 61 (that is where the thrown error is) but
-  it might be the 'this.destroyed()' line in a function, but taking it out didnt fix the problem
-
+To Do:
+- add scoring!
+- end game when player dies
 
 
 

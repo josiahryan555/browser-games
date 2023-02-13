@@ -7,7 +7,7 @@ class Ballon {
         this.y = starting_y;
         this.circle_radius = 30;
         this.x_moving_speed = 0;
-        this.y_moving_speed = 1;
+        this.y_moving_speed = 3;  //return to 1? when not debuging
         this.hit_box = {
             top: this.y - this.circle_radius,
             bottom: this.y + this.circle_radius,

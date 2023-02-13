@@ -35,6 +35,8 @@ document.addEventListener('keyup', function (event) {
 
 function moveEverything() {
     // Game.Level.collisionCheck(Game.User);
+    Game1.game();//TODO should be updated to do all game1. moves
+
     Game1.User.move();
     Game1.Level.move();
 

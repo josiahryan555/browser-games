@@ -6,22 +6,21 @@ class Game {
         this.next_level_num = 1;
         this.Level = this.makeLevel(this.next_level_num);
         this.canvas = canvas;
-        this.game();
         this.game_playing = true;
+        this.game();
 
     }
 
     //returns level object with level_num determining the difficulty
     makeLevel(level_num) {
-        Level = new Level(1, 3, 10, level_num);
+        let level = new Level(1, 3, 10, level_num);
         this.next_level_num += 1; //updates level_num
-        return Level;
+        return level;
     }
 
-    //game loop
+    //called every move()
     game() {
-        while (this.game_playing) {
-            //game loop
+        if (this.game_playing) {
             this.handleLevelChange();
         }
     }
@@ -29,6 +28,7 @@ class Game {
     //checks if there needs to be a level change
     handleLevelChange() {
         if (this.Level.finished(600)) {
+            console.log("making next level!");
             this.Level = this.makeLevel(this.next_level_num);
         }
     }

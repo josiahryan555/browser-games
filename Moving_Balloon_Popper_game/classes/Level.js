@@ -46,7 +46,7 @@ class Level {
     }
 
     render(canvas, canvasContext) {
-        console.log("Level.render()");
+        // console.log("Level.render()");
         this.balloon_lines.forEach(function (balloon_line, index) {
             // console.log("rendering balloon line " + index);
             balloon_line.render(canvas, canvasContext);
@@ -62,6 +62,8 @@ class Level {
 
     //returns true if level is passed
     finished(height) {
+        console.log("in Level.js printing this.balloon_lines[0].army_array[0].y: ");
+        console.log(this.balloon_lines[0].army_array[0].y);
         if (this.balloon_lines[0].army_array[0].y >= height) {
             //checks this one balloon's y
             return true;
