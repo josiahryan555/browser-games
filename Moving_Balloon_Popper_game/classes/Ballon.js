@@ -14,6 +14,7 @@ class Ballon {
             left: this.x - this.circle_radius,
             right: this.x + this.circle_radius
         };
+        this.hitting_points = 10; //points gotten for hitting balloons
         // this.updateHitBox();
     }
 
@@ -41,8 +42,10 @@ class Ballon {
     }
 
     //pops ballon, goes down in health
+    //returns points achieved for hitting
     hit() {
         this.health -= 1;
+        return (this.hitting_points);
     }
 
     //render

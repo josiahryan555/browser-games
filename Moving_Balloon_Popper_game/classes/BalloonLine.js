@@ -34,9 +34,8 @@ class BalloonLine {
         this.army_array.forEach(function (balloon, index) {
             let hit = balloon.collisionCheck(User);  //bool
             if (hit) {
-                balloon.hit();
+                // console.log("printing BalloonLine.collisionCheck, balloon.hit() = " + val);
                 collision = true;
-
             }
         })
         this.removeDeadEnemies();

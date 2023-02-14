@@ -7,6 +7,7 @@ class XMovingPlayerShip extends PlayerSpaceShip {
         this.move_distance = move_distance;
         this.moving_left = false; //when left arrow key is pressed
         this.moving_right = false; //when right arrow key is pressed
+        this.player_points = 0;
     }
 
     handle_keyup(name) {
@@ -91,7 +92,8 @@ class XMovingPlayerShip extends PlayerSpaceShip {
                             bullet.destroy();
 
                             //hit balloon
-                            balloon.hit();
+                            let points = balloon.hit()
+                            this.increasePoints(points);
 
                         }
                     }
@@ -112,4 +114,8 @@ class XMovingPlayerShip extends PlayerSpaceShip {
         matrix_of_balloons.map(balloon_line => this.collisionCheckRow(balloon_line));
     }
 
+    increasePoints(points) {
+        this.player_points += points;
+        return this.player_points;
+    }
 }
