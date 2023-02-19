@@ -1,10 +1,4 @@
-To Do:
-- add scoring!
-- end game when player dies
+TO DO:
 
-
-
-- add more levels, constantly getting harder?
-- make it 3D
-- add scoreing
-- add lives
+add functionality to move troops
+add functionality for player to capture

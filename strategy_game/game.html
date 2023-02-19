@@ -1,0 +1,60 @@
+<!-- html canvas game outline with a ball bouncing -->
+<html>
+
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<script src="classes/shapes.js"></script>
+<script src="classes/Tile.js"></script>
+<script src="classes/Map.js"></script>
+
+<script>
+    var canvas;
+    var canvasContext;
+
+    // let t = new Tile(100, 100, 'blue')
+    let map = new Map(30, 0, 0, document.getElementById('gameCanvas').width, document.getElementById('gameCanvas').height)
+    map.createMap();
+    map.setupMap();
+    // map.placeTeam(10, 10, 10, 'green');
+    // map.placeTeam(7, 1, 10, 'red');
+
+
+    window.onload = function () {
+        canvas = document.getElementById('gameCanvas');
+        canvasContext = canvas.getContext('2d');
+
+        var framesPerSecond = 30;
+        setInterval(function () {
+            moveEverything();
+            drawEverything();
+        }, 1000 / framesPerSecond);
+    }
+
+    function moveEverything() {
+        map.handleTick();
+
+    }
+
+    function drawEverything() {
+        // next line blanks out the screen with black
+        colorRect(0, 0, canvas.width, canvas.height, 'black');
+        // t.render(100, 100, canvasContext);
+        map.render(canvasContext);
+
+
+
+        function colorCircle(centerX, centerY, radius, drawColor) {
+            canvasContext.fillStyle = drawColor;
+            canvasContext.beginPath();
+            canvasContext.arc(centerX, centerY, radius, 0, Math.PI * 2, true);
+            canvasContext.fill();
+        }
+
+        function colorRect(leftX, topY, width, height, drawColor) {
+            canvasContext.fillStyle = drawColor;
+            canvasContext.fillRect(leftX, topY, width, height);
+        }
+    }
+</script>
+
+</html>
